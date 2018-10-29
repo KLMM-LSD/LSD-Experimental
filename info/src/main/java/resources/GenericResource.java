@@ -5,6 +5,7 @@
  */
 package resources;
 
+import com.google.gson.JsonObject;
 import dblayer.PostQueries;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -52,8 +53,25 @@ public class GenericResource {
     @Path("thread")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getThread(@QueryParam("id") int threadid) {
-        
-        System.out.println("thread lookup on id " + threadid);
-        return Response.status(418).build();
+        try {
+            JsonObject ret = PostQueries.getThread(threadid);
+            return Response.ok(ret.toString()).build();
+        } catch (SQLException ex) {
+            Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(500).build();
+        }
+    }
+
+    @GET
+    @Path("frontpage")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFrontpage() {
+        try {
+            JsonObject ret = PostQueries.getFrontpage();
+            return Response.ok(ret.toString()).build();
+        } catch (SQLException ex) {
+            Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(500).build();
+        }
     }
 }

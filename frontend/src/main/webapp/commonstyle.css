@@ -1,0 +1,45 @@
+
+h1, div {
+    max-width:	800pt;
+}
+
+h1, div, a, td, th {
+    font-family:	Arial;
+}
+
+td, th {
+    border:		1px solid black;
+    padding:	3pt;
+}
+
+th {
+    background-color:	#EFEFEF;
+}
+
+table {
+    border-collapse:	collapse;
+}
+
+hr {
+    border:		0;
+    height:		1px;
+    background:	#EEE;
+}
+
+div, a {
+    font-size:	11pt;
+}
+
+div.post {
+    background-color:	#F8F8F8;
+    padding:		5pt;
+    margin:			5pt 0em;
+    border:			1px solid lightgrey;
+    max-width:		800pt;
+}
+
+div.content {
+    padding:		2pt 2em;
+    color:			black;
+}
+
