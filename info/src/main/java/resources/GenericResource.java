@@ -14,6 +14,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -45,6 +46,14 @@ public class GenericResource {
             Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(500).build();
         }
+    }
 
+    @GET
+    @Path("thread")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getThread(@QueryParam("id") int threadid) {
+        
+        System.out.println("thread lookup on id " + threadid);
+        return Response.status(418).build();
     }
 }
