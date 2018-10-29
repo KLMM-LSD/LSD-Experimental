@@ -12,7 +12,5 @@ package config;
 public class Config {
 
     public static final String STATUS_FILE
-            = "C:\\Users\\Lasse\\Downloads"
-            + "\\wildfly-11.0.0.Final\\wildfly-11.0.0.Final\\standalone"
-            + "\\deployments\\status.txt";
+            = "/opt/wildfly/status";
 }

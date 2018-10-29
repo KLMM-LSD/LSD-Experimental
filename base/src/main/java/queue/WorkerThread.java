@@ -36,7 +36,6 @@ public class WorkerThread extends Thread {
     }
 
     public static void processPosts(Node n) throws SQLException {
-        long before, after;
         if (n == null) {
             return;
         }
