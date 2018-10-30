@@ -37,7 +37,6 @@ public class GenericResource {
     }
 
     @GET
-    @Path("latest")
     @Produces(MediaType.TEXT_PLAIN)
     public Response getLatest() {
         try {
