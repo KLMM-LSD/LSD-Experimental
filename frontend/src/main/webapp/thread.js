@@ -47,7 +47,7 @@ function main()
 	built_string	= "";
 
 	xhttp.onreadystatechange = fetch_comments;
-	xhttp.open("GET", "../info/thread" + window.location.search);
+	xhttp.open("GET", "../latest/thread" + window.location.search);
 	xhttp.send();
 }
 

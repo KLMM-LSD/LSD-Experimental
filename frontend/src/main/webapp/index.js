@@ -41,7 +41,7 @@ function main()
     built_string = "Ready<br/>";
 
     xhttp.onreadystatechange = fetch_threads;
-    xhttp.open("GET", "../info/frontpage");
+    xhttp.open("GET", "../latest/frontpage");
     xhttp.send();
 }
 
