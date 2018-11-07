@@ -3,11 +3,11 @@ var len, arr_postid, arr_postauthorid, arr_postcontent;
 
 function append_entry(idx)
 {
-    built_string += "<tr><td>"
+    built_string += "<tr><td>";
     built_string += "<a href=\"thread.html?id=" + arr_postid[idx] + "\">" + arr_postid[idx] + "</a>";
-    built_string += "</td><td>"
+    built_string += "</td><td>";
     built_string += arr_postcontent[idx];
-    built_string += "</td><td>"
+    built_string += "</td><td>";
     built_string += arr_postauthorid[idx];
     built_string += "</td></tr>";
 }
@@ -16,7 +16,7 @@ function fetch_threads()
 {
     var json;
 
-    if (xhttp.readyState != 4 || xhttp.status != 200)
+    if (xhttp.readyState !== 4 || xhttp.status !== 200)
         return;
 
     json = JSON.parse(xhttp.responseText);
@@ -27,7 +27,7 @@ function fetch_threads()
     arr_postcontent = json["arr_postcontent"];
 
     built_string = "<table><tr><th>id</th><th>content</th><th>authorid</th></tr>";
-    for (var i = 0; i != len; i++)
+    for (var i = 0; i !== len; i++)
         append_entry(i);
     built_string += "</table>";
 
@@ -50,4 +50,4 @@ document.onreadystatechange = function ()
     if (document.readyState !== "interactive")
         return;
     main();
-}
+};
