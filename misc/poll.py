@@ -10,7 +10,7 @@ latencies = defaultdict(lambda: 0)
 
 def measure():
 	headers = {"connection": "close"}
-	r = requests.get("http://localhost:8080/latest/frontpage")
+	r = requests.get("http://localhost:8080/latest/frontpage", headers=headers)
 	status = r.status_code
 	ms = int(r.elapsed.total_seconds() * 1000)
 	latencies[ms] += 1
