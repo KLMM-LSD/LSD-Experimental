@@ -9,5 +9,5 @@
 $ mysql -N -uroot -proot lsd < postids.sql | python find_gaps.py
 ```
 
-![](latencies.png)
+![](image.png)
 
