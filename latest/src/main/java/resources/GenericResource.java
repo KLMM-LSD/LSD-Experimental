@@ -7,7 +7,6 @@ package resources;
 
 import com.google.gson.JsonObject;
 import dblayer.PostQueries;
-import io.prometheus.client.Histogram;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,10 +26,6 @@ import javax.ws.rs.core.Response;
  */
 @Path("/")
 public class GenericResource {
-
-    static public final Histogram frontpageHistogram = Histogram
-            .build("frontpage_json_latency", "Frontpage JSON latency")
-            .register();
 
     @Context
     private UriInfo context;
@@ -70,16 +65,12 @@ public class GenericResource {
     @Path("frontpage")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getFrontpage() {
-        Histogram.Timer timer = frontpageHistogram.startTimer();
-
         try {
             JsonObject ret = PostQueries.getFrontpage();
             return Response.ok(ret.toString()).build();
         } catch (SQLException ex) {
             Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(500).build();
-        } finally {
-            timer.observeDuration();
         }
     }
 }
