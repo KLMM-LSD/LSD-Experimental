@@ -3,9 +3,7 @@ from collections import defaultdict
 import requests
 import time
 
-file_latencies = "latencies.pkl"
 file_graph = "latencies.png"
-
 latencies = defaultdict(lambda: 0)
 
 def measure():
@@ -17,13 +15,14 @@ def measure():
 
 def draw():
 	global file_graph
-	plt.bar(list(latencies.keys()), latencies.values(), color="g", alpha=0.5)
+	plt.bar(list(latencies.keys()), latencies.values(), color="g")
 	plt.ylabel("Amount in bucket")
 	plt.title("Latency of GET /latest/frontpage in ms")
 	plt.savefig(file_graph)
+	plt.clf()
 
 while True:
 	measure()
 	draw()
-	time.sleep(30)
+	time.sleep(300)
 
