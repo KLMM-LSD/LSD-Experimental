@@ -19,7 +19,7 @@ def draw():
 	plt.ylabel("Amount in bucket")
 	plt.title("Latency of GET /latest/frontpage in ms")
 	plt.savefig(file_graph)
-	plt.clf()
+	plt.close()
 
 while True:
 	measure()

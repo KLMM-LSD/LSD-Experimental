@@ -25,7 +25,7 @@ def draw():
 		shadow=True, startangle=130)
 	plt.title("Status code stats of GET /frontend")
 	plt.savefig("status.png")
-	plt.clf()
+	plt.close()
 
 def loop():
 	measure()

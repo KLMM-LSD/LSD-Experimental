@@ -9,5 +9,6 @@ while True:
 	dataframe = csv_to_df("sizes.csv")
 	dataframe.plot(kind="line",x="timestamp",y="megabytes",color="red")
 	plt.savefig("sizes.png")
-	plt.clf()
+	plt.close()
 	time.sleep(3600)
+
