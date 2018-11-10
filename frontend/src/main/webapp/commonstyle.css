@@ -43,6 +43,10 @@ div.content {
     color:			black;
 }
 
+div.postinfo {
+    font-weight:    bold;
+}
+
 a.backlink {
     color:      darkorange;
 }
