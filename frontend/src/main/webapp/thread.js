@@ -3,11 +3,8 @@ var comments_id, xhttp, built_string;
 
 function escape_html(unsafe) {
     return unsafe
-            .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+            .replace(/>/g, "&gt;");
 }
 
 function build_one(idx)

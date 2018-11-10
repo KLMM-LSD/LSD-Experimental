@@ -3,11 +3,8 @@ var len, arr_postid, arr_postauthorid, arr_postcontent;
 
 function escape_html(unsafe) {
     return unsafe
-            .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+            .replace(/>/g, "&gt;");
 }
 
 function append_entry(idx)
