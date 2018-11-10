@@ -1,12 +1,21 @@
 var threads_id, xhttp, built_string;
 var len, arr_postid, arr_postauthorid, arr_postcontent;
 
+function escape_html(unsafe) {
+    return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+}
+
 function append_entry(idx)
 {
     built_string += "<tr><td>";
     built_string += "<a href=\"thread.html?id=" + arr_postid[idx] + "\">" + arr_postid[idx] + "</a>";
     built_string += "</td><td>";
-    built_string += arr_postcontent[idx];
+    built_string += escape_html(arr_postcontent[idx]);
     built_string += "</td><td>";
     built_string += arr_postauthorid[idx];
     built_string += "</td></tr>";

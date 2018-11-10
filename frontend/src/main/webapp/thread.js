@@ -1,12 +1,21 @@
 var json;
 var comments_id, xhttp, built_string;
 
+function escape_html(unsafe) {
+    return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+}
+
 function build_one(idx)
 {
     var postid = json["arr_postid"][idx];
     var postparentid = json["arr_postparentid"][idx];
     var authorid = json["arr_postauthorid"][idx];
-    var content = json["arr_postcontent"][idx];
+    var content = escape_html(json["arr_postcontent"][idx]);
 
     built_string += "<div>#" + postid;
     built_string += " | Author " + authorid;
