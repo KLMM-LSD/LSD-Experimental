@@ -14,10 +14,9 @@ function build_one(idx)
     var authorid = json["arr_postauthorid"][idx];
     var content = escape_html(json["arr_postcontent"][idx]);
 
-    built_string += "<div>#" + postid;
+    built_string += "<div id=\"" + postid + "\">#" + postid;
     built_string += " | Author " + authorid;
-    if (idx !== 0 || !json["first_is_story"])
-        built_string += " | Re " + postparentid;
+    built_string += " | Re <a class=\"backlink\" href=\"#" + postparentid + "\">" + postparentid + "</a>";
     built_string += "</div>";
     built_string += "<div>" + content + "</div>";
     built_string += "<hr/>";
