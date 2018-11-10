@@ -7,6 +7,7 @@ package resources;
 
 import com.google.gson.JsonObject;
 import dblayer.PostQueries;
+import dblayer.UserQueries;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +41,7 @@ public class GenericResource {
     @Produces(MediaType.TEXT_PLAIN)
     public Response getLatest() {
         try {
-            int ret = PostQueries.getLatest();
+            int ret = PostQueries.getLatestID();
             return Response.ok(ret).build();
         } catch (SQLException ex) {
             Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,6 +68,19 @@ public class GenericResource {
     public Response getFrontpage() {
         try {
             JsonObject ret = PostQueries.getFrontpage();
+            return Response.ok(ret.toString()).build();
+        } catch (SQLException ex) {
+            Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(500).build();
+        }
+    }
+
+    @GET
+    @Path("user")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUserpage(@QueryParam("id") int userid) {
+        try {
+            JsonObject ret = UserQueries.getUserpage(userid);
             return Response.ok(ret.toString()).build();
         } catch (SQLException ex) {
             Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
