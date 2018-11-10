@@ -9,6 +9,7 @@ API
 | /post | POST |
 | /latest | GET |
 | /latest/thread?id=\<number\> | GET |
+| /latest/user?id=\<number\> | GET |
 | /latest/frontpage | GET |
 | /frontend | GET |
 | /signup | POST |
