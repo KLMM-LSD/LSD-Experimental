@@ -1,6 +1,7 @@
 
 h1, div {
     max-width:	800pt;
+    overflow-wrap: break-word;
 }
 
 h1, div, a, td, th {
@@ -36,6 +37,7 @@ div.post {
     margin:			5pt 0em;
     border:			1px solid lightgrey;
     max-width:		800pt;
+    overflow-wrap: break-word;
 }
 
 div.content {
