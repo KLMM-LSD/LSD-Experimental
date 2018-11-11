@@ -20,7 +20,7 @@ public class UserQueries {
 
     public static final int MAX_USERPAGE_POSTS = 20;
     public static final String GET_USER_QUERY = "SELECT usertype, username FROM users WHERE userid = ?";
-    public static final String GET_USER_POSTS_QUERY = "SELECT postid, postparentid, postthreadid, postcontent FROM posts WHERE postauthorid = ? ORDER BY postid DESC LIMIT ?";
+    public static final String GET_USER_POSTS_QUERY = "SELECT postid, postthreadid, postcontent FROM posts WHERE postauthorid = ? ORDER BY postid DESC LIMIT ?";
 
     public static JsonObject getUserpage(int userid) throws SQLException {
         JsonObject ret = new JsonObject();
@@ -29,7 +29,6 @@ public class UserQueries {
         String username = null;
         String usertype = null;
         JsonArray arr_postid = new JsonArray();
-        JsonArray arr_postparentid = new JsonArray();
         JsonArray arr_postthreadid = new JsonArray();
         JsonArray arr_postcontent = new JsonArray();
 
@@ -51,7 +50,6 @@ public class UserQueries {
             rs = ps.executeQuery();
             while (rs.next()) {
                 arr_postid.add(rs.getInt("postid"));
-                arr_postparentid.add(rs.getInt("postparentid"));
                 arr_postthreadid.add(rs.getInt("postthreadid"));
                 arr_postcontent.add(rs.getString("postcontent"));
                 postcount++;
@@ -62,7 +60,6 @@ public class UserQueries {
         ret.addProperty("usertype", usertype);
         ret.addProperty("len", postcount);
         ret.add("arr_postid", arr_postid);
-        ret.add("arr_postparentid", arr_postparentid);
         ret.add("arr_postthreadid", arr_postthreadid);
         ret.add("arr_postcontent", arr_postcontent);
 

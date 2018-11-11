@@ -1,7 +1,8 @@
 var threads_id, xhttp, built_string;
 var len, arr_postid, arr_postauthorid, arr_postcontent;
 
-function escape_html(unsafe) {
+function escape_html(unsafe)
+{
     return unsafe
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;");

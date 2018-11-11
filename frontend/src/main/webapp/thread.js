@@ -1,7 +1,8 @@
 var json;
 var comments_id, xhttp, built_string;
 
-function escape_html(unsafe) {
+function escape_html(unsafe)
+{
     return unsafe
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;");
