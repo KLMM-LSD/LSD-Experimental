@@ -16,8 +16,8 @@ function build_one(idx)
     var content = escape_html(json["arr_postcontent"][idx]);
 
     built_string += "<div class=\"postinfo\" id=\"" + postid + "\">" + postid;
-    built_string += " Author " + authorid;
-
+    built_string += " Author <a class=\"backlink\" href=\"userpage.html?id="
+            + authorid + "\">" + authorid + "</a>";
     if (idx !== 0 && postparentid !== json["arr_postid"][0]) {
         built_string += " Re <a class=\"backlink\" href=\"#" + postparentid
                 + "\">" + postparentid + "</a>";
@@ -49,6 +49,13 @@ function fetch_comments()
     build_posts();
 
     comments_id.innerHTML = built_string;
+
+    /* Scroll into view */
+    if (location.href.indexOf("#") !== -1) {
+        document.getElementById(
+                location.href.substr(location.href.indexOf("#") + 1)
+                ).scrollIntoView();
+    }
 }
 
 function main()

@@ -45,7 +45,7 @@ function main()
 {
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = fetch_posts;
-    xhttp.open("GET", "../latest/user" + window.location.search);
+    xhttp.open("GET", "../latest/userpage" + window.location.search);
     xhttp.send();
 }
 

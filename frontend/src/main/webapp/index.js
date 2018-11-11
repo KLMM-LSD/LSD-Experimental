@@ -11,11 +11,12 @@ function escape_html(unsafe)
 function append_entry(idx)
 {
     built_string += "<tr><td>";
-    built_string += "<a href=\"thread.html?id=" + arr_postid[idx] + "\">" + arr_postid[idx] + "</a>";
+    built_string += "<a class=\"backlink\" href=\"thread.html?id=" + arr_postid[idx] + "\">" + arr_postid[idx] + "</a>";
     built_string += "</td><td>";
     built_string += escape_html(arr_postcontent[idx]);
     built_string += "</td><td>";
-    built_string += arr_postauthorid[idx];
+    built_string += "<a class=\"backlink\" href=\"userpage.html?id=" + arr_postauthorid[idx]
+            + "\">" + arr_postauthorid[idx] + "</a>";
     built_string += "</td></tr>";
 }
 

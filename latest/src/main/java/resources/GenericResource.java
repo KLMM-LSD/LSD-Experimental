@@ -76,7 +76,7 @@ public class GenericResource {
     }
 
     @GET
-    @Path("user")
+    @Path("userpage")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserpage(@QueryParam("id") int userid) {
         try {
