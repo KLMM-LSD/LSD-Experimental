@@ -1,0 +1,17 @@
+#Travis configuration for LSD-Experimental
+
+language: java
+
+addons:
+    mariadb: '10.0'
+
+before_install:
+    - echo "Configuring build."
+    #Change into directory where pom.xml is located
+    - cd base
+    #Change mysql password to match local development config (from travis docs),
+    - sudo mysql -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('root');"
+    - sudo service mysql restart
+    #Create database with new credentials
+    - curl -O https://raw.githubusercontent.com/KLMM-LSD/LSD-Database/master/db.sql
+    - sudo mysql -u root -proot < db.sql
