@@ -9,6 +9,9 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import org.apache.log4j.Logger;
+
+import resources.GenericResource;
 
 /**
  *
@@ -16,6 +19,7 @@ import java.sql.SQLException;
  */
 public class HikariCPDataSource {
 
+    private static Logger log = Logger.getLogger(HikariCPDataSource.class.getName());    
     private static HikariConfig config = new HikariConfig();
     private static HikariDataSource ds;
 
@@ -47,7 +51,6 @@ public class HikariCPDataSource {
         return ds.getConnection();
 
     }
-
     private HikariCPDataSource() {
     }
 }
