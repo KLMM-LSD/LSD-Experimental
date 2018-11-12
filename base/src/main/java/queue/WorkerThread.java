@@ -15,8 +15,12 @@ import org.apache.log4j.Logger;
  */
 public class WorkerThread extends Thread {
 
-    private static Logger log = Logger.getLogger(Queries.class.getName());
+    private static final Logger log = Logger.getLogger(Queries.class.getName());
 
+    public static void main(String[] args) {
+        log.debug("hej");
+    }
+    
     @Override
     public void run() {
         for (;;) {
