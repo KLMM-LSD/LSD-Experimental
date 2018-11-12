@@ -34,7 +34,7 @@ public class HikariCPDataSource {
 
         /* This property controls the maximum lifetime of a connection in
            the pool. */
-        config.setMaxLifetime(60 * 1000);
+        config.setMaxLifetime(120 * 1000);
 
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
