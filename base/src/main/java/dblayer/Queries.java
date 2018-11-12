@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import org.apache.log4j.Logger;
 import queue.Node;
 
 /**
@@ -18,6 +19,8 @@ import queue.Node;
  * @author Lasse
  */
 public class Queries {
+
+    private static Logger log = Logger.getLogger(Queries.class.getName());
 
     /* If fail, try to insert as much as possible anyways */
     public static final String INSERT_POST_QUERY = "INSERT IGNORE INTO posts VALUES(?, ?, ?,\n"
@@ -53,6 +56,7 @@ public class Queries {
                 insertUser(con, n);
                 break;
             default:
+                log.debug("Default Case Reached");
             /* System.out.println("Wtf?"); */
         }
 
@@ -102,6 +106,7 @@ public class Queries {
 
             default:
                 System.out.println("WTF?");
+                log.debug("Default Case Reached");
                 return;
         }
 

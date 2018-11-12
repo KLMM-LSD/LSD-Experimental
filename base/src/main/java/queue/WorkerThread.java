@@ -7,8 +7,7 @@ package queue;
 
 import dblayer.Queries;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -16,15 +15,19 @@ import java.util.logging.Logger;
  */
 public class WorkerThread extends Thread {
 
+    private static Logger log = Logger.getLogger(Queries.class.getName());
+
     @Override
     public void run() {
         for (;;) {
             try {
                 workerLoop();
             } catch (InterruptedException ex) {
-                Logger.getLogger(WorkerThread.class.getName()).log(Level.SEVERE, null, ex);
+                log.debug("Interruped Exception :" + ex.getMessage());
+                //  Logger.getLogger(WorkerThread.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(WorkerThread.class.getName()).log(Level.SEVERE, null, ex);
+                log.debug("SQL Exception : " + ex.getMessage());
+                //  Logger.getLogger(WorkerThread.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
