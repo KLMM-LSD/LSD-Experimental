@@ -24,6 +24,7 @@ public class HikariCPDataSource {
     private static HikariDataSource ds;
 
     static {
+        log.debug("Attempting to create connection.");
         config.setJdbcUrl("jdbc:mysql://localhost:3306/lsd?zeroDateTimeBehaviour=convertToNull&serverTimezone=UTC&useSSL=false");
         config.setUsername("root");
         config.setPassword("root");

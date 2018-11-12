@@ -44,7 +44,8 @@ public class GenericResource {
             int ret = PostQueries.getLatestID();
             return Response.ok(ret).build();
         } catch (SQLException ex) {
-           // Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            log.debug("SQLException encountered: " + ex.getMessage());
+            // Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(500).build();
         }
     }
@@ -57,7 +58,8 @@ public class GenericResource {
             JsonObject ret = PostQueries.getThread(threadid);
             return Response.ok(ret.toString()).build();
         } catch (SQLException ex) {
-         //   Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            //   Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            log.debug("SQLException encountered: " + ex.getMessage());
             return Response.status(500).build();
         }
     }
@@ -70,7 +72,8 @@ public class GenericResource {
             JsonObject ret = PostQueries.getFrontpage();
             return Response.ok(ret.toString()).build();
         } catch (SQLException ex) {
-           // Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            log.debug("SQLException encountered: " + ex.getMessage());
+            // Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(500).build();
         }
     }
@@ -83,7 +86,8 @@ public class GenericResource {
             JsonObject ret = UserQueries.getUserpage(userid);
             return Response.ok(ret.toString()).build();
         } catch (SQLException ex) {
-           // Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            log.debug("SQLException encountered: " + ex.getMessage());
+            // Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(500).build();
         }
     }
