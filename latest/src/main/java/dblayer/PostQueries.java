@@ -18,16 +18,16 @@ import java.sql.SQLException;
  */
 public class PostQueries {
 
-    public static final String GET_LATEST_QUERY = "SELECT postid FROM posts ORDER BY postid DESC LIMIT 1";
+    public static final String GET_LATEST_ID_QUERY = "SELECT postid FROM posts ORDER BY postid DESC LIMIT 1";
     public static final String GET_THREAD_QUERY = "SELECT * FROM posts WHERE postthreadid = ?";
     public static final String GET_FRONTPAGE_QUERY = "SELECT * FROM posts WHERE posttype = \"story\" ORDER BY postid DESC LIMIT ?";
     public static final int MAX_FRONTPAGE_ENTRIES = 20;
 
-    public static int getLatest() throws SQLException {
+    public static int getLatestID() throws SQLException {
         int ret = 0;
 
         try (Connection con = HikariCPDataSource.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(GET_LATEST_QUERY);
+            PreparedStatement ps = con.prepareStatement(GET_LATEST_ID_QUERY);
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -43,7 +43,6 @@ public class PostQueries {
         try (Connection con = HikariCPDataSource.getConnection()) {
             PreparedStatement ps = con.prepareStatement(GET_THREAD_QUERY);
             ResultSet rs;
-            boolean first_is_story = false;
             int len = 0;
             JsonArray arr_postid = new JsonArray();
             JsonArray arr_postparentid = new JsonArray();
@@ -58,7 +57,6 @@ public class PostQueries {
                 arr_postcontent.add(rs.getString("postcontent"));
                 len++;
             }
-            ret.addProperty("first_is_story", first_is_story);
             ret.addProperty("len", len);
             ret.add("arr_postid", arr_postid);
             ret.add("arr_postparentid", arr_postparentid);

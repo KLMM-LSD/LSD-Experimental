@@ -7,9 +7,8 @@ package resources;
 
 import com.google.gson.JsonObject;
 import dblayer.PostQueries;
+import dblayer.UserQueries;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.GET;
@@ -18,6 +17,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.apache.log4j.Logger;
 
 /**
  * REST Web Service
@@ -27,6 +27,7 @@ import javax.ws.rs.core.Response;
 @Path("/")
 public class GenericResource {
 
+    private static Logger log = Logger.getLogger(GenericResource.class.getName());
     @Context
     private UriInfo context;
 
@@ -40,10 +41,11 @@ public class GenericResource {
     @Produces(MediaType.TEXT_PLAIN)
     public Response getLatest() {
         try {
-            int ret = PostQueries.getLatest();
+            int ret = PostQueries.getLatestID();
             return Response.ok(ret).build();
         } catch (SQLException ex) {
-            Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            log.debug("SQLException encountered: " + ex.getMessage());
+            // Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(500).build();
         }
     }
@@ -56,7 +58,8 @@ public class GenericResource {
             JsonObject ret = PostQueries.getThread(threadid);
             return Response.ok(ret.toString()).build();
         } catch (SQLException ex) {
-            Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            //   Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            log.debug("SQLException encountered: " + ex.getMessage());
             return Response.status(500).build();
         }
     }
@@ -69,7 +72,22 @@ public class GenericResource {
             JsonObject ret = PostQueries.getFrontpage();
             return Response.ok(ret.toString()).build();
         } catch (SQLException ex) {
-            Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            log.debug("SQLException encountered: " + ex.getMessage());
+            // Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(500).build();
+        }
+    }
+
+    @GET
+    @Path("userpage")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUserpage(@QueryParam("id") int userid) {
+        try {
+            JsonObject ret = UserQueries.getUserpage(userid);
+            return Response.ok(ret.toString()).build();
+        } catch (SQLException ex) {
+            log.debug("SQLException encountered: " + ex.getMessage());
+            // Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(500).build();
         }
     }
