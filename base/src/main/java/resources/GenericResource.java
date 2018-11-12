@@ -5,6 +5,7 @@
  */
 package resources;
 
+import io.prometheus.client.Counter;
 import java.sql.SQLException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.Context;
@@ -24,7 +25,8 @@ import queue.Node;
 @Path("/")
 public class GenericResource {
 
-    public static int counter = 0;
+    static final Counter metric_post_request = Counter.build()
+            .name("post_requests").help("Amount of requests on /post").register();
 
     @Context
     private UriInfo context;
@@ -42,6 +44,7 @@ public class GenericResource {
     public Response putPost(String body) throws InterruptedException, SQLException {
         Node n = new Node(body, Node.KIND.POST);
         Node.insertNode(n);
+        metric_post_request.inc();
         return Response.ok().build();
     }
 
