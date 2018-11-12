@@ -9,6 +9,9 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import org.apache.log4j.Logger;
+
+import resources.GenericResource;
 
 /**
  *
@@ -16,10 +19,12 @@ import java.sql.SQLException;
  */
 public class HikariCPDataSource {
 
+    private static Logger log = Logger.getLogger(HikariCPDataSource.class.getName());    
     private static HikariConfig config = new HikariConfig();
     private static HikariDataSource ds;
 
     static {
+        log.debug("Attempting to create connection.");
         config.setJdbcUrl("jdbc:mysql://localhost:3306/lsd?zeroDateTimeBehaviour=convertToNull&serverTimezone=UTC&useSSL=false");
         config.setUsername("root");
         config.setPassword("root");
@@ -47,7 +52,6 @@ public class HikariCPDataSource {
         return ds.getConnection();
 
     }
-
     private HikariCPDataSource() {
     }
 }
