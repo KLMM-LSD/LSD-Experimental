@@ -21,12 +21,12 @@ import javax.ws.rs.core.UriInfo;
  * @author Lasse
  */
 @Path("/metrics")
-public class MetricResource {
+public class MetricsResource {
 
     @Context
     private UriInfo context;
 
-    public MetricResource() {
+    public MetricsResource() {
 
     }
 
