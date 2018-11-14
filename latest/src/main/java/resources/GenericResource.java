@@ -54,29 +54,9 @@ public class GenericResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public Response getLatest() {
-        int ret = 1;
-        try {
-            if (Math.random() > 0.5) {
-                ret = PostQueries.getLatest();
-            }
-
-            metric_latest.set(ret);
-
-            return Response.ok(ret).build();
-        } catch (SQLException ex) {
-            Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
-
-            metric_500.inc();
-            return Response.status(500).build();
-        }
-    }
-
-    @GET
-    @Path("real")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response getLatestReal() {
         try {
             int ret = PostQueries.getLatest();
+            metric_latest.set(ret);
             return Response.ok(ret).build();
         } catch (SQLException ex) {
             Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);

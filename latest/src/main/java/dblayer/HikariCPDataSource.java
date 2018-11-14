@@ -9,6 +9,9 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 /**
  *
@@ -17,7 +20,7 @@ import java.sql.SQLException;
 public class HikariCPDataSource {
 
     private static HikariConfig config = new HikariConfig();
-    private static HikariDataSource ds;
+    public static HikariDataSource ds;
 
     static {
         config.setJdbcUrl("jdbc:mysql://localhost:3306/lsd?zeroDateTimeBehaviour=convertToNull&serverTimezone=UTC&useSSL=false");
