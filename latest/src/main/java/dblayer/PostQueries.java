@@ -11,6 +11,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +26,11 @@ public class PostQueries {
     public static final String GET_THREAD_QUERY = "SELECT * FROM posts WHERE postthreadid = ?";
     public static final String GET_FRONTPAGE_QUERY = "SELECT * FROM posts WHERE posttype = \"story\" ORDER BY postid DESC LIMIT ?";
     public static final int MAX_FRONTPAGE_ENTRIES = 20;
+
+    public static AtomicReference<JsonObject> FRONTPAGE_CACHE = new AtomicReference<>();
+    public static AtomicInteger FRONTPAGE_CACHE_LOCK = new AtomicInteger();
+    public static long FRONTPAGE_CACHE_TIMESTAMP = 0;
+    public static long FRONTPAGE_CACHE_MAXLIFE_MS = 1000;
 
     public static int getLatest() throws SQLException {
         int ret = 0;
@@ -68,15 +77,42 @@ public class PostQueries {
         return ret;
     }
 
-    public static JsonObject getFrontpage() throws SQLException {
+    public static JsonObject getFrontpage() {
+        tryUpdateCache();
+        return FRONTPAGE_CACHE.get();
+    }
+
+    public static void tryUpdateCache() {
+        long cache_age = System.currentTimeMillis() - FRONTPAGE_CACHE_TIMESTAMP;
+        JsonObject newfrontpage;
+
+        if (cache_age <= FRONTPAGE_CACHE_MAXLIFE_MS) {
+            return;
+        }
+
+        if (FRONTPAGE_CACHE_LOCK.getAndSet(1) == 1) {
+            return;
+        }
+
+        try {
+            newfrontpage = getFrontpageQuery();
+            FRONTPAGE_CACHE.set(newfrontpage);
+        } catch (SQLException ex) {
+            Logger.getLogger(PostQueries.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            FRONTPAGE_CACHE_LOCK.set(0);
+        }
+    }
+
+    public static JsonObject getFrontpageQuery() throws SQLException {
         JsonObject ret = new JsonObject();
         try (Connection con = HikariCPDataSource.getConnection()) {
             PreparedStatement ps = con.prepareStatement(GET_FRONTPAGE_QUERY);
             ResultSet rs;
             int len = 0;
-            JsonArray arr_postid = new JsonArray();
-            JsonArray arr_postauthorid = new JsonArray();
-            JsonArray arr_postcontent = new JsonArray();
+            JsonArray arr_postid = new JsonArray(20);
+            JsonArray arr_postauthorid = new JsonArray(20);
+            JsonArray arr_postcontent = new JsonArray(20);
 
             ps.setInt(1, MAX_FRONTPAGE_ENTRIES);
             rs = ps.executeQuery();

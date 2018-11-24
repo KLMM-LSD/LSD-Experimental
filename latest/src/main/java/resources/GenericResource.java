@@ -93,13 +93,6 @@ public class GenericResource {
             after_query = System.currentTimeMillis();
 
             return Response.ok(ret.toString()).build();
-        } catch (SQLException ex) {
-            after_query = System.currentTimeMillis();
-
-            Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
-
-            metric_500.inc();
-            return Response.status(500).build();
         } finally {
             after_response = System.currentTimeMillis();
 
