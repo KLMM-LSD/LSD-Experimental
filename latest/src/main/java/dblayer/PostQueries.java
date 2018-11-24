@@ -101,6 +101,7 @@ public class PostQueries {
             Logger.getLogger(PostQueries.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             FRONTPAGE_CACHE_LOCK.set(0);
+            FRONTPAGE_CACHE_TIMESTAMP = System.currentTimeMillis();
         }
     }
 
