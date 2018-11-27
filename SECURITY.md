@@ -19,6 +19,6 @@
 our asignment was to ATTACK this project: https://github.com/stanleyh007/Project_HNClone
 
 we checked with https://lgtm.com/
-![](scan.png)
+![](scan.PNG)
 though these are not security related
 
