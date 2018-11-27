@@ -5,12 +5,12 @@
 | SQL-Databse | Literally nothing | Rare |
 | Droplet | Very Low | Rare |
 
-- Nothing worth stealing in the database; all posts are public; helge hashed asspwrods beforehand
+- Nothing worth stealing in the database; all posts are public; helge hashed passwords beforehand
 - Prepared statements
-- Database only accepts logins from localhost, need 2 copromise droplet 2 hack
+- Database only accepts logins from localhost, need to copromise droplet to hack
 - Escape html in posts
 - ssh keys needed
-- 2FA on Digitalocean
+- Two-factor authentication on Digitalocean
 - Stateless
 - No stack traces exposed to frontend
 
