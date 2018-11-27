@@ -16,15 +16,7 @@
 
 ## Vulnberaribitlies
 
-Our asignment was to ATTACK this project: https://github.com/stanleyh007/Project_HNClone
-
-<<<<<<< HEAD
-we checked with LGTM [results](scan.PNG)
-=======
-We checked with https://lgtm.com/
-![](scan.PNG)
-Though these are not security related
->>>>>>> 9757958f341e9b55b737f8a5d915c7ef3c395637
-
-We also tried social engineerging, no respone yet
+- Our asignment was to ATTACK this project: https://github.com/stanleyh007/Project_HNClone
+- We checked with LGTM [results](scan.PNG)
+- We also tried social engineerging, no respone yet
 ![](soceng.PNG)
