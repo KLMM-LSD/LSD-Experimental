@@ -18,9 +18,7 @@
 
 our asignment was to ATTACK this project: https://github.com/stanleyh007/Project_HNClone
 
-we checked with https://lgtm.com/
-![](scan.PNG)
-though these are not security related
+we checked with LGTM [results](scan.PNG)
 
 we also tried social engineerging, no respone yet
 ![](soceng.PNG)
