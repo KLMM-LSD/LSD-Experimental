@@ -13,3 +13,8 @@
 - 2fa on digitalocean
 - stateless
 - no stack traces exposed to frontend
+
+## Vulnberaribitlies
+
+our asignment was to ATTACK this project: https://github.com/stanleyh007/Project_HNClone
+currently checking with https://lgtm.com/
