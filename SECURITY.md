@@ -1,7 +1,7 @@
 # Security
 
 | Asset | Risk | Likelihood |
-| --- | --- |
+| --- | --- | --- |
 | SQL-Databse | Literally nothing | Rare |
 | Droplet | Very Low | Rare |
 
