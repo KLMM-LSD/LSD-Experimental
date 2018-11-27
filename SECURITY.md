@@ -17,4 +17,8 @@
 ## Vulnberaribitlies
 
 our asignment was to ATTACK this project: https://github.com/stanleyh007/Project_HNClone
-currently checking with https://lgtm.com/
+
+we checked with https://lgtm.com/
+![](scan.png)
+though these are not security related
+
