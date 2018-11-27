@@ -1,9 +1,9 @@
 # Security
 
-| Asset | Degree of criticalness |
+| Asset | Risk | Likelihood |
 | --- | --- |
-| SQL-Databse | Literally nothing |
-| Droplet | Very Low |
+| SQL-Databse | Literally nothing | Rare |
+| Droplet | Very Low | Rare |
 
 - nothing worth stealing in the database; all posts are public; helge hashed asspwrods beforehand
 - prepared statements
