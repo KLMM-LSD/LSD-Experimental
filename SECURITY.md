@@ -10,3 +10,6 @@
 - db only accepts logins from localhost, need 2 copromise droplet 2 hack
 - escape html in posts
 - ssh keys needed
+- 2fa on digitalocean
+- stateless
+- no stack traces exposed to frontend
