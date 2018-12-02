@@ -36,3 +36,4 @@ This made the decision to use a public-facing hostname in the connection string 
 
 ## OWTF
 No matter what I tried OWTF wouldn't work for me, when I tried the command ``` docker-compose up ``` on the docker-compose file it went through all 25 steps out of 37 but stopped there because the module yaml couldn't be found. pyyaml and other yaml libraries were installed and I tried to even downgrade libraries and dependencies but it never got imported.
+I event tried to install it manually both on the virtual environment and on the host but still didn't work.
