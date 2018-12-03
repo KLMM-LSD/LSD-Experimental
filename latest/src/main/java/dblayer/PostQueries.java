@@ -26,22 +26,21 @@ public class PostQueries {
     public static int getLatestID() throws SQLException {
         int ret = 0;
 
-        try (Connection con = HikariCPDataSource.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(GET_LATEST_ID_QUERY);
+        try (Connection con = HikariCPDataSource.getConnection();
+                PreparedStatement ps = con.prepareStatement(GET_LATEST_ID_QUERY)) {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ret = rs.getInt(1);
             }
         }
-
         return ret;
     }
 
     public static JsonObject getThread(int threadid) throws SQLException {
         JsonObject ret = new JsonObject();
-        try (Connection con = HikariCPDataSource.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(GET_THREAD_QUERY);
+        try (Connection con = HikariCPDataSource.getConnection();
+                PreparedStatement ps = con.prepareStatement(GET_THREAD_QUERY)) {
             ResultSet rs;
             int len = 0;
             JsonArray arr_postid = new JsonArray();
@@ -68,8 +67,8 @@ public class PostQueries {
 
     public static JsonObject getFrontpage() throws SQLException {
         JsonObject ret = new JsonObject();
-        try (Connection con = HikariCPDataSource.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(GET_FRONTPAGE_QUERY);
+        try (Connection con = HikariCPDataSource.getConnection();
+                PreparedStatement ps = con.prepareStatement(GET_FRONTPAGE_QUERY)) {
             ResultSet rs;
             int len = 0;
             JsonArray arr_postid = new JsonArray();
