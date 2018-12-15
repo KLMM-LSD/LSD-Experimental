@@ -16,10 +16,6 @@ import org.apache.log4j.Logger;
 public class WorkerThread extends Thread {
 
     private static final Logger log = Logger.getLogger(Queries.class.getName());
-
-    public static void main(String[] args) {
-        log.debug("hej");
-    }
     
     @Override
     public void run() {
@@ -28,10 +24,8 @@ public class WorkerThread extends Thread {
                 workerLoop();
             } catch (InterruptedException ex) {
                 log.debug("Interruped Exception :" + ex.getMessage());
-                //  Logger.getLogger(WorkerThread.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 log.debug("SQL Exception : " + ex.getMessage());
-                //  Logger.getLogger(WorkerThread.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -46,7 +40,6 @@ public class WorkerThread extends Thread {
         if (n == null) {
             return;
         }
-
         Queries.pushList(n);
     }
 
