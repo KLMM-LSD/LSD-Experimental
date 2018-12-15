@@ -57,7 +57,6 @@ public class Queries {
                 break;
             default:
                 log.debug("Default Case Reached");
-            /* System.out.println("Wtf?"); */
         }
 
     }
