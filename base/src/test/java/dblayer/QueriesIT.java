@@ -21,7 +21,7 @@ public class QueriesIT {
 
     private static Queries query;
     private static HikariTestData con;
-    
+
     public QueriesIT() {
     }
 
@@ -38,34 +38,23 @@ public class QueriesIT {
     @Before
     public void setUp() {
     }
-    
+
     public static int getUserData(Connection con, String type) throws SQLException {
-        
-        PreparedStatement ps = con.prepareStatement("SELECT Count(*) AS rowcount FROM ?");
-        ps.setString(1, type);
+
+        PreparedStatement ps = con.prepareStatement("SELECT Count(*) AS count FROM "+ type);
         ResultSet r = ps.executeQuery();
         r.next();
-        int count = r.getInt("rowcount");
+        int count = r.getInt("count");
         r.close();
         System.out.println("My Count is : " + count);
-        return count; 
+        return count;
     }
+
     public static void main(String[] args) throws SQLException {
-        //con = HikariTestData.getConnection();
-        //getUserData(con, "users");
-    
+        try (Connection con = HikariTestData.getConnection()) {
+            getUserData(con, "users");
+        }
+
     }
-    
-//        public static void insertUser(Connection con, Node n) throws SQLException {
-//        PreparedStatement ps = con.prepareStatement(INSERT_USER_QUERY);
-//        JsonParser jp = new JsonParser();
-//        JsonObject jo = jp.parse(n.body).getAsJsonObject();
-//
-//        ps.setString(1, "user");
-//        ps.setString(2, jo.get("username").getAsString());
-//        ps.setString(3, jo.get("pwd_hash").getAsString());
-//
-//        ps.execute();
-//    }
 
 }
